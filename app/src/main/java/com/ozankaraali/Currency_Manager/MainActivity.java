@@ -68,16 +68,20 @@ public class MainActivity extends AppCompatActivity {
                 if(eT.getText().toString().matches("")){amount = 0;}
                 else{amount = Double.parseDouble(eT.getText().toString());}
                 double calc = 0;
-                try {
-                    calc = (MainConversion.getRate(T,C)*amount);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                if(T.equals(C)){
+                    eC.setText(String.valueOf(amount));}
+                else {
+                    try {
+                        calc = (MainConversion.getRate(T, C) * amount);
+                        eC.setText(String.valueOf(calc));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-                eC.setText(String.valueOf(calc));
             }
         });
         /*sT.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
